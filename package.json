@@ -1,0 +1,16 @@
+{
+  "name": "tubecity",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "nodemon src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "\"Aman\"",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "prettier": "^3.0.3"
+  }
+}
