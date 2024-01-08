@@ -12,7 +12,7 @@ const asyncHandler = (fn) => async (req, res, next) => {
 
 // by using promises methods
 const asyncHandler2 = (fn) => {
-  (req, res, next) => {
+  return (req, res, next) => {
     Promise.resolve(fn(req, res, next)).reject((error) => {
       next(error);
     });

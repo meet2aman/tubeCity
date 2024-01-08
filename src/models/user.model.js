@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      required: true,
+      required: [true, "Username is required"],
       unique: true,
       lowecase: true,
       trim: true,
@@ -14,28 +14,27 @@ const userSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: true,
+      required: [true, "Email is required"],
       unique: true,
       lowecase: true,
       trim: true,
     },
     fullName: {
       type: String,
-      required: true,
-
+      required: [true, "Name is required"],
       trim: true,
       index: true,
     },
     avatar: {
       type: String, /// cloudinary avatar
-      required: true,
+      required: [true, "Avatar is required"],
     },
     coverImage: {
-      type: String,
+      type: String, /// cloudinary avatar
     },
     watchHistory: [
       {
-        type: Schema.type.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "Videos",
       },
     ],
