@@ -5,8 +5,9 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { username, fullName, password, email } = req.body;
+  const { username, email, fullName, password } = req.body;
   console.log("email :: ", email);
+  console.log("req.body :: ", req.body);
 
   if (
     [fullName, email, password, username].some((field) => {
@@ -23,14 +24,23 @@ const registerUser = asyncHandler(async (req, res) => {
   if (existedUser) throw new ApiError(409, "user already exists");
 
   const avatarLocalPath = req.files?.avatar[0]?.path;
-  const coverImageLocalPath = req.files?.coverImage[0]?.path;
+  // const coverImageLocalPath = req.files?.coverImage[0]?.path;
 
-  if (!avatarLocalPath) throw new ApiError(400, "Missing avatar");
+  let coverImageLocalPath;
+  if (
+    req.files &&
+    Array.isArray(req.files.coverImage) &&
+    req.files.coverImage.length > 0
+  ) {
+    coverImageLocalPath = req.files.coverImage[0].path;
+  }
+
+  if (!avatarLocalPath) throw new ApiError(400, "Missing avatar-1");
 
   const avatar = await uploadOnCloudinary(avatarLocalPath);
   const coverImage = await uploadOnCloudinary(coverImageLocalPath);
 
-  if (!avatar) throw new ApiError(400, "Missing avatar");
+  if (!avatar) throw new ApiError(400, "Missing avatar-2");
 
   const user = await User.create({
     fullName,
