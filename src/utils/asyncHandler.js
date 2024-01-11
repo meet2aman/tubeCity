@@ -11,12 +11,12 @@ const asyncHandler = (fn) => async (req, res, next) => {
 };
 
 // by using promises methods
-const asyncHandler2 = (fn) => {
-  return (req, res, next) => {
-    Promise.resolve(fn(req, res, next)).reject((error) => {
-      next(error);
-    });
-  };
-};
+// const asyncHandler2 = (fn) => {
+//   return (req, res, next) => {
+//     Promise.resolve(fn(req, res, next)).reject((error) => {
+//       next(error);
+//     });
+//   };
+// };
 
-export { asyncHandler, asyncHandler2 };
+export { asyncHandler };
